@@ -1,41 +1,75 @@
-const path = require('path');
-const glob = require('glob');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const TerserPlugin = require('terser-webpack-plugin');
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+const path = require("path");
+const glob = require("glob-all");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const TerserPlugin = require("terser-webpack-plugin");
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 
-module.exports = (env, options) => ({
-  optimization: {
-    minimizer: [
-      new TerserPlugin({ cache: true, parallel: true, sourceMap: false }),
-      new OptimizeCSSAssetsPlugin({})
-    ]
-  },
-  entry: {
-    './js/app.js': glob.sync('./vendor/**/*.js').concat(['./js/app.js'])
-  },
-  output: {
-    filename: 'app.js',
-    path: path.resolve(__dirname, '../priv/static/js')
-  },
-  module: {
-    rules: [
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader'
-        }
-      },
-      {
-        test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader']
-      }
-    ]
-  },
-  plugins: [
-    new MiniCssExtractPlugin({ filename: '../css/app.css' }),
-    new CopyWebpackPlugin([{ from: 'static/', to: '../' }])
+let PurgecssPlugin = require("purgecss-webpack-plugin");
+
+const TailwindExtractor = content => {
+  return content.match(/[A-Za-z0-9-_:\/]+/g) || [];
+};
+
+const purge = new PurgecssPlugin({
+  paths: glob.sync([
+    path.resolve(__dirname, "../lib/guildship_web/live/**/*.ex"),
+    path.resolve(__dirname, "../lib/guildship_web/templates/**/*.eex"),
+    path.resolve(__dirname, "../lib/guildship_web/templates/**/*.leex"),
+    path.resolve(__dirname, "../lib/guildship_web/views/**/*.ex")
+  ]),
+  extractors: [
+    {
+      extractor: TailwindExtractor,
+      extensions: ["ex", "eex", "leex"]
+    }
   ]
 });
+
+const nodeEnv = JSON.stringify(process.env["NODE_ENV"]);
+
+const isProd = nodeEnv === '"production"';
+
+const prodPlugins = [purge];
+
+module.exports = (env, options) => {
+  return {
+    optimization: {
+      minimizer: [
+        new TerserPlugin({ cache: true, parallel: true, sourceMap: false }),
+        new OptimizeCSSAssetsPlugin({})
+      ]
+    },
+    entry: {
+      "./js/app.js": glob.sync("./vendor/**/*.js").concat(["./js/app.js"])
+    },
+    output: {
+      filename: "app.js",
+      path: path.resolve(__dirname, "../priv/static/js")
+    },
+    module: {
+      rules: [
+        {
+          test: /\.js$/,
+          exclude: /node_modules/,
+          use: {
+            loader: "babel-loader"
+          }
+        },
+        {
+          test: /\.css$/,
+          use: [
+            MiniCssExtractPlugin.loader,
+            { loader: "css-loader", options: { importLoaders: 1 } },
+            "postcss-loader"
+          ]
+        }
+      ]
+    },
+    plugins: [
+      new MiniCssExtractPlugin({ filename: "../css/app.css" }),
+      new CopyWebpackPlugin([{ from: "static/", to: "../" }]),
+      ...(isProd ? prodPlugins : [])
+    ]
+  };
+};

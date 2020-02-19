@@ -24,6 +24,7 @@ defmodule GuildshipWeb do
       import Plug.Conn
       import GuildshipWeb.Gettext
       alias GuildshipWeb.Router.Helpers, as: Routes
+      import Phoenix.LiveView.Controller
     end
   end
 
@@ -42,6 +43,7 @@ defmodule GuildshipWeb do
       import GuildshipWeb.ErrorHelpers
       import GuildshipWeb.Gettext
       alias GuildshipWeb.Router.Helpers, as: Routes
+      import Phoenix.LiveView.Helpers
     end
   end
 
@@ -50,6 +52,7 @@ defmodule GuildshipWeb do
       use Phoenix.Router
       import Plug.Conn
       import Phoenix.Controller
+      import Phoenix.LiveView.Router
     end
   end
 

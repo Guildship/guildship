@@ -16,7 +16,7 @@ config :guildship, GuildshipWeb.Endpoint,
   secret_key_base: "C2P5qf5Snj/tcyVHjRIqL4W19UFK9xLic/OmWVwIf5KVoXl4CUAVXATbjteeR8pv",
   render_errors: [view: GuildshipWeb.ErrorView, accepts: ~w(html json)],
   pubsub: [name: Guildship.PubSub, adapter: Phoenix.PubSub.PG2],
-  live_view: [signing_salt: "3Wd//CUk"]
+  live_view: [signing_salt: "GeiCcZTQCoYcs0xwsqzVcqsrgCBZxmdE"]
 
 # Configures Elixir's Logger
 config :logger, :console,

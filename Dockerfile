@@ -7,6 +7,7 @@ RUN mix local.hex --force && mix local.rebar --force
 WORKDIR /app
 
 ENV MIX_ENV prod
+ENV NODE_ENV production
 
 # Copy required files for compilation
 COPY ./mix.* ./

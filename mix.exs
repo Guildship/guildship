@@ -17,7 +17,7 @@ defmodule Guildship.MixProject do
 
   def package() do
     [
-      licenses: ["GPL-3.0-or-later"],
+      licenses: ["GPL-3.0-only"],
       links: %{
         "GitHub" => "https://github.com/Guildship"
       }
@@ -53,7 +53,9 @@ defmodule Guildship.MixProject do
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
-      {:mix_test_watch, "~> 1.0", only: :dev, runtime: false}
+      {:mix_test_watch, "~> 1.0", only: :dev, runtime: false},
+      {:phoenix_live_view, "~> 0.7.1"},
+      {:floki, ">= 0.0.0", only: :test}
     ]
   end
 

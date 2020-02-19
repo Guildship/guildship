@@ -10,6 +10,8 @@ defmodule GuildshipWeb.Endpoint do
     signing_salt: "4y/ZQes1"
   ]
 
+  socket "/live", Phoenix.LiveView.Socket, websocket: [connect_info: [session: @session_options]]
+
   socket "/socket", GuildshipWeb.UserSocket,
     websocket: true,
     longpoll: false
