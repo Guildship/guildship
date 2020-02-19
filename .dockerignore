@@ -1,0 +1,24 @@
+# Misc
+.git
+Dockerfile
+docker-compose.yml
+README.md
+
+# IDE Stuff
+.elixir_ls/
+.vscode/
+.idea/
+
+# Mix artifacts
+/_build/
+/deps/
+*.ez
+
+# Generate on crash by the VM
+erl_crash.dump
+
+# Static artifacts
+/assets/node_modules/
+
+# Tests
+/test/
