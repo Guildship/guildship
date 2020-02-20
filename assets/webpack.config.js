@@ -8,7 +8,7 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 let PurgecssPlugin = require("purgecss-webpack-plugin");
 
 const TailwindExtractor = content => {
-  return content.match(/[A-Za-z0-9-_:\/]+/g) || [];
+  return content.match(/[\w-/:]+(?<!:)/g) || [];
 };
 
 const purge = new PurgecssPlugin({
