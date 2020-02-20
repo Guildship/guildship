@@ -29,6 +29,7 @@ config :guildship, GuildshipWeb.Endpoint,
       ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
       ~r"priv/gettext/.*(po)$",
       ~r"lib/guildship_web/live/.*(ex)$",
+      ~r"lib/guildship_web/live_components/.*(ex)$",
       ~r"lib/guildship_web/views/.*(ex)$",
       ~r"lib/guildship_web/templates/.*(eex)$"
     ]
