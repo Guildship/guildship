@@ -5,9 +5,6 @@ until psql -h db -U "postgres" -c '\q' 2>/dev/null; do
 done
 
 if [ "${1}" = "setup" ]; then
-  echo "Creating database user..."
-  createuser -h db -U postgres pair -d
-  
   echo "Creating and migrating development database..."
   mix do ecto.drop, ecto.create
   psql -h db -U postgres guildship_dev -c "CREATE EXTENSION pgcrypto"
