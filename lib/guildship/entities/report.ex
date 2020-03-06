@@ -1,6 +1,6 @@
 defmodule Guildship.Entities.Report do
-  use Ecto.Schema
-  alias Guildship.Accounts.User
+  use Guildship.Schema
+  alias User
 
   schema "entity_reports" do
     field :body, :string

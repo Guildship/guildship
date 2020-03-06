@@ -6,6 +6,7 @@ defmodule Guildship.Schema do
       alias Guildship.Entities
       alias Guildship.Guilds
       alias Entities.Entity
+      alias Accounts.User
     end
   end
 end

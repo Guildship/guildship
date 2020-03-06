@@ -17,6 +17,6 @@ defmodule Guildship.Accounts.User do
     user
     |> cast(attrs, [:username, :discriminator])
     |> validate_required([:username, :discriminator])
-    |> unique_constraint([:username_discriminator], name: :username_discriminator_unique_index)
+    |> unique_constraint(:username_discriminator, name: :username_discriminator_unique_index)
   end
 end

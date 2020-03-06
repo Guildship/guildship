@@ -5,7 +5,7 @@ defmodule Guildship.Guilds.ForumThreadReply do
     field :body_raw, :string
     field :body_html, :string
     belongs_to :entity, Entity
-    belongs_to :user, Accounts.User
+    belongs_to :user, User
     belongs_to :forum_thread, Guilds.ForumThread
 
     timestamps()

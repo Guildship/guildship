@@ -7,7 +7,7 @@ defmodule Guildship.Guilds.NewsPost do
     field :body_html, :string
     belongs_to :entity, Entity
     belongs_to :guild, Guilds.Guild
-    belongs_to :author, Accounts.User
+    belongs_to :author, User
 
     timestamps()
   end

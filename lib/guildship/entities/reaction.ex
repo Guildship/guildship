@@ -3,7 +3,7 @@ defmodule Guildship.Entities.Reaction do
 
   schema "entity_reactions" do
     belongs_to :entity, Entity
-    belongs_to :user, Accounts.User
+    belongs_to :user, User
 
     timestamps()
   end
