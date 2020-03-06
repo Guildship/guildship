@@ -6,10 +6,10 @@ defmodule Guildship.AccountsTest do
   describe "users" do
     alias Guildship.Accounts.User
 
-    @valid_attrs %{discriminator: "some discriminator", username: "some username"}
+    @valid_attrs %{discriminator: 3124, username: "username_3"}
     @update_attrs %{
-      discriminator: "some updated discriminator",
-      username: "some updated username"
+      discriminator: 6452,
+      username: "username_2"
     }
     @invalid_attrs %{discriminator: nil, username: nil}
 
@@ -34,8 +34,8 @@ defmodule Guildship.AccountsTest do
 
     test "create_user/1 with valid data creates a user" do
       assert {:ok, %User{} = user} = Accounts.create_user(@valid_attrs)
-      assert user.discriminator == "some discriminator"
-      assert user.username == "some username"
+      assert user.discriminator == 3124
+      assert user.username == "username_3"
     end
 
     test "create_user/1 with invalid data returns error changeset" do
@@ -45,8 +45,8 @@ defmodule Guildship.AccountsTest do
     test "update_user/2 with valid data updates the user" do
       user = user_fixture()
       assert {:ok, %User{} = user} = Accounts.update_user(user, @update_attrs)
-      assert user.discriminator == "some updated discriminator"
-      assert user.username == "some updated username"
+      assert user.discriminator == 6452
+      assert user.username == "username_2"
     end
 
     test "update_user/2 with invalid data returns error changeset" do
