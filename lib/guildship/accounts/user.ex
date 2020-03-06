@@ -1,7 +1,6 @@
 defmodule Guildship.Accounts.User do
   use Guildship.Schema
   alias Guildship.Repo
-  import Ecto.{Query, Changeset}
 
   schema "users" do
     field :username, :string
@@ -36,17 +35,35 @@ defmodule Guildship.Accounts.User do
       less_than_or_equal_to: @max_discriminator,
       greater_than_or_equal_to: @min_discriminator
     )
-    |> validate_discriminator()
   end
 
-  defp validate_discriminator(%Ecto.Changeset{valid?: true} = changeset) do
-    changeset
+  def new_changeset(user, attrs) do
+    attrs = attrs |> add_discriminator_to_user()
+
+    user
+    |> changeset(attrs)
   end
 
-  defp validate_discriminator(%Ecto.Changeset{} = changeset), do: changeset
+  def edit_changeset(user, attrs) do
+    user
+    |> changeset(attrs)
+  end
+
+  defp add_discriminator_to_user(%{username: username} = attrs) do
+    case username |> get_available_discriminator() do
+      {:ok, discriminator} ->
+        Map.put(attrs, :discriminator, discriminator)
+
+      _ ->
+        attrs
+    end
+  end
 
   defp get_available_discriminator(username) do
-    query = from u in User, where: u.username == ^username, select: u.discriminator
+    query =
+      from u in User,
+        where: u.username == ^username,
+        select: u.discriminator
 
     used_discriminators = Repo.all(query) |> MapSet.new()
     available_discriminators = MapSet.difference(@possible_discriminators, used_discriminators)
