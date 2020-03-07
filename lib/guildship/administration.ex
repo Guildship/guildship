@@ -17,4 +17,11 @@ defmodule Guildship.Administration do
   def remove_admin(%Administration.Admin{} = admin) do
     Repo.delete(admin)
   end
+
+  @doc """
+  Gets all admins
+  """
+  def get_all_admins() do
+    Repo.all(Administration.Admin)
+  end
 end

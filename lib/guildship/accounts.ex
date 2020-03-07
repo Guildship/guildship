@@ -3,10 +3,8 @@ defmodule Guildship.Accounts do
   The Accounts context.
   """
 
-  import Ecto.Query, warn: false
-  alias Guildship.Repo
-
-  alias Guildship.Accounts.User
+  use Guildship
+  alias Accounts.User
 
   @doc """
   Returns the list of users.

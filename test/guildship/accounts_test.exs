@@ -1,7 +1,6 @@
 defmodule Guildship.AccountsTest do
+  use Guildship
   use Guildship.DataCase
-
-  alias Guildship.Accounts
 
   describe "users" do
     alias Guildship.Accounts.User
