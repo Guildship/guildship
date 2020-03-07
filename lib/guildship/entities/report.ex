@@ -3,7 +3,7 @@ defmodule Guildship.Entities.Report do
   alias User
 
   schema "entity_reports" do
-    field :body, :string
+    field :reason, :string
     belongs_to :entity, Entity
     belongs_to :user, User
 

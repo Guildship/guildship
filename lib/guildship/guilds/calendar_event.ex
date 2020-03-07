@@ -3,7 +3,8 @@ defmodule Guildship.Guilds.CalendarEvent do
 
   schema "guild_calendar_event" do
     field :title, :string
-    field :description, :string
+    field :description_raw, :string
+    field :description_html, :string
     field :starts_at, :naive_datetime
     field :ends_at, :naive_datetime
     belongs_to :entity, Entity

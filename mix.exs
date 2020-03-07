@@ -52,7 +52,8 @@ defmodule Guildship.MixProject do
       {:ex_machina, "~> 2.4.0"},
       {:faker, "~> 0.13.0"},
       {:earmark, "~> 1.4.3"},
-      {:html_sanitize_ex, "~> 1.4.0"}
+      {:html_sanitize_ex, "~> 1.4.0"},
+      {:recase, "~> 0.6.0"}
     ]
   end
 
