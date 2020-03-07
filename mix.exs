@@ -50,7 +50,9 @@ defmodule Guildship.MixProject do
       {:phoenix_live_view, "~> 0.7.1"},
       {:floki, ">= 0.0.0", only: :test},
       {:ex_machina, "~> 2.4.0"},
-      {:faker, "~> 0.13.0"}
+      {:faker, "~> 0.13.0"},
+      {:earmark, "~> 1.4.3"},
+      {:html_sanitize_ex, "~> 1.4.0"}
     ]
   end
 
