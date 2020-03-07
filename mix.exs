@@ -24,9 +24,6 @@ defmodule Guildship.MixProject do
     ]
   end
 
-  # Configuration for the OTP application.
-  #
-  # Type `mix help compile.app` for more information.
   def application do
     [
       mod: {Guildship.Application, []},
@@ -34,13 +31,9 @@ defmodule Guildship.MixProject do
     ]
   end
 
-  # Specifies which paths to compile per environment.
   defp elixirc_paths(:test), do: ["lib", "test/support"]
   defp elixirc_paths(_), do: ["lib"]
 
-  # Specifies your project dependencies.
-  #
-  # Type `mix help deps` for examples and options.
   defp deps do
     [
       {:phoenix, "~> 1.4.13"},
@@ -55,16 +48,12 @@ defmodule Guildship.MixProject do
       {:plug_cowboy, "~> 2.0"},
       {:mix_test_watch, "~> 1.0", only: :dev, runtime: false},
       {:phoenix_live_view, "~> 0.7.1"},
-      {:floki, ">= 0.0.0", only: :test}
+      {:floki, ">= 0.0.0", only: :test},
+      {:ex_machina, "~> 2.4.0"},
+      {:faker, "~> 0.13.0"}
     ]
   end
 
-  # Aliases are shortcuts or tasks specific to the current project.
-  # For example, to create, migrate and run the seeds file at once:
-  #
-  #     $ mix ecto.setup
-  #
-  # See the documentation for `Mix` for more info on aliases.
   defp aliases do
     [
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],

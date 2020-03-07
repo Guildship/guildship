@@ -3,7 +3,7 @@ defmodule Guildship.Guilds do
   The Guilds context.
   """
 
-  alias Guildship.Accounts.User
+  use Guildship
 
   def create_guild() do
   end
