@@ -24,6 +24,7 @@ defmodule Guildship.DataCase do
       import Ecto.Changeset
       import Ecto.Query
       import Guildship.DataCase
+      import Guildship.Factory
     end
   end
 
