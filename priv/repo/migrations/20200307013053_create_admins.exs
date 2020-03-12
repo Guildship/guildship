@@ -8,6 +8,6 @@ defmodule Guildship.Repo.Migrations.CreateAdmins do
       timestamps()
     end
 
-    unique_index(:admins, [:user_id])
+    create unique_index(:admins, [:user_id])
   end
 end

@@ -11,5 +11,7 @@ defmodule Guildship.Repo.Migrations.CreateGuildForumThreadReplies do
 
       timestamps()
     end
+
+    create unique_index(:guild_forum_thread_replies, [:entity_id])
   end
 end
