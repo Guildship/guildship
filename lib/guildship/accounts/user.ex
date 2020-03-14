@@ -5,6 +5,7 @@ defmodule Guildship.Accounts.User do
   schema "users" do
     field :username, :string
     field :discriminator, :integer
+    belongs_to :entity, Entity
     has_many :guild_memberships, Guilds.Membership
     has_many :guild_forum_threads, Guilds.ForumThread
     has_many :guild_forum_thread_replies, Guilds.ForumThreadReply
@@ -21,8 +22,8 @@ defmodule Guildship.Accounts.User do
   @doc false
   def changeset(user, attrs) do
     user
-    |> cast(attrs, [:username, :discriminator])
-    |> validate_required([:username, :discriminator])
+    |> cast(attrs, [:username, :discriminator, :entity_id])
+    |> validate_required([:username, :discriminator, :entity_id])
     |> unique_constraint(:username_discriminator, name: :username_discriminator_unique_index)
     |> validate_length(:username, max: @username_max_length)
     |> validate_format(

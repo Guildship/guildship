@@ -2,8 +2,13 @@ defmodule Guildship.Factory do
   use Guildship
   use ExMachina.Ecto, repo: Repo
 
+  def entity_factory do
+    %Entities.Entity{}
+  end
+
   def user_factory do
     %Accounts.User{
+      entity: build(:entity),
       username: sequence(:username, &"cool_user_#{&1}"),
       discriminator: 0..9999 |> Enum.random()
     }
@@ -13,10 +18,6 @@ defmodule Guildship.Factory do
     %Administration.Admin{
       user: build(:user)
     }
-  end
-
-  def entity_factory do
-    %Entities.Entity{}
   end
 
   def entity_tag_factory do

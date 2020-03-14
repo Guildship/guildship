@@ -49,8 +49,7 @@ defmodule Guildship.Accounts do
   """
   def create_user(attrs \\ %{}) do
     %User{}
-    |> User.new_changeset(attrs)
-    |> Repo.insert()
+    |> Entities.create_entity_multi(attrs, &User.new_changeset/2, content_key: :user)
   end
 
   @doc """

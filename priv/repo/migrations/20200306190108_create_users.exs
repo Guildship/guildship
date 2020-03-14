@@ -5,6 +5,7 @@ defmodule Guildship.Repo.Migrations.CreateUsers do
     create table(:users) do
       add :username, :string, null: false
       add :discriminator, :int, null: false
+      add :entity_id, references(:entities, on_delete: :delete_all), null: false
 
       timestamps()
     end

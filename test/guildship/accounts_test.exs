@@ -12,23 +12,24 @@ defmodule Guildship.AccountsTest do
     @invalid_attrs %{discriminator: 1234, username: ""}
 
     test "list_users/0 returns all users" do
-      user = insert(:user)
-      assert Accounts.list_users() == [user]
+      %User{id: user_id} = insert(:user)
+      assert [%User{id: ^user_id}] = Accounts.list_users()
     end
 
     test "get_user!/1 returns the user with given id" do
-      user = insert(:user)
-      assert Accounts.get_user!(user.id) == user
+      %User{id: user_id} = insert(:user)
+      assert %User{id: ^user_id} = Accounts.get_user!(user_id)
     end
 
     test "create_user/1 with valid data creates a user" do
-      assert {:ok, %User{} = user} = Accounts.create_user(@valid_attrs)
+      assert {:ok, %{user: %User{} = user}} = Accounts.create_user(@valid_attrs)
       assert is_nil(user.discriminator) == false
       assert user.username == "username_3"
     end
 
     test "create_user/1 with invalid data returns error changeset" do
-      assert {:error, %Ecto.Changeset{}} = Accounts.create_user(@invalid_attrs)
+      assert {:error, :user, %Ecto.Changeset{}, _transaction} =
+               Accounts.create_user(@invalid_attrs)
     end
 
     test "update_user/2 with valid data updates the user" do
@@ -39,9 +40,9 @@ defmodule Guildship.AccountsTest do
     end
 
     test "update_user/2 with invalid data returns error changeset" do
-      user = insert(:user)
+      %User{id: user_id} = user = insert(:user)
       assert {:error, %Ecto.Changeset{}} = Accounts.update_user(user, @invalid_attrs)
-      assert user == Accounts.get_user!(user.id)
+      assert %User{id: ^user_id} = Accounts.get_user!(user.id)
     end
 
     test "delete_user/1 deletes the user" do
