@@ -3,7 +3,7 @@ defmodule Guildship.Repo.Migrations.CreateGuildNewsPosts do
 
   def change do
     create table(:guild_news_posts) do
-      add :entity_id, references(:entities, on_delete: :delete_all), null: false
+      add :entity_id, references(:entities), null: false
       add :guild_id, references(:guilds), null: false
       add :author_id, references(:users), null: false
       add :title, :string, null: false
@@ -12,5 +12,7 @@ defmodule Guildship.Repo.Migrations.CreateGuildNewsPosts do
 
       timestamps()
     end
+
+    create unique_index(:guild_news_posts, [:entity_id])
   end
 end

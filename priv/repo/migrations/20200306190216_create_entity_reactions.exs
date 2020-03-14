@@ -3,10 +3,12 @@ defmodule Guildship.Repo.Migrations.CreateEntityReactions do
 
   def change do
     create table(:entity_reactions) do
-      add :entity_id, references(:entities, on_delete: :delete_all), null: false
+      add :entity_id, references(:entities), null: false
       add :user_id, references(:users), null: false
 
       timestamps()
     end
+
+    create unique_index(:entity_reactions, [:user_id, :entity_id])
   end
 end

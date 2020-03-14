@@ -4,7 +4,7 @@ defmodule Guildship.Repo.Migrations.CreateGuildCalendarEvents do
   def change do
     create table(:guild_calendar_events) do
       add :guild_id, references(:guilds), null: false
-      add :entity_id, references(:entities, on_delete: :delete_all), null: false
+      add :entity_id, references(:entities), null: false
       add :author_id, references(:users), null: false
       add :title, :string, null: false
       add :description_raw, :text
@@ -14,5 +14,7 @@ defmodule Guildship.Repo.Migrations.CreateGuildCalendarEvents do
 
       timestamps()
     end
+
+    create unique_index(:guild_calendar_events, [:entity_id])
   end
 end

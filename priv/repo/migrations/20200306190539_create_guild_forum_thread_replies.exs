@@ -3,7 +3,7 @@ defmodule Guildship.Repo.Migrations.CreateGuildForumThreadReplies do
 
   def change do
     create table(:guild_forum_thread_replies) do
-      add :entity_id, references(:entities, on_delete: :delete_all), null: false
+      add :entity_id, references(:entities), null: false
       add :forum_thread_id, references(:guild_forum_threads), null: false
       add :user_id, references(:users), null: false
       add :body_raw, :text, null: false

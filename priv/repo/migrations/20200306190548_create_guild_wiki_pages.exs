@@ -3,7 +3,7 @@ defmodule Guildship.Repo.Migrations.CreateGuildWikiPages do
 
   def change do
     create table(:guild_wiki_pages) do
-      add :entity_id, references(:entities, on_delete: :delete_all), null: false
+      add :entity_id, references(:entities), null: false
       add :guild_id, references(:guilds), null: false
       add :title, :string, null: false
       add :body_raw, :text
@@ -11,5 +11,7 @@ defmodule Guildship.Repo.Migrations.CreateGuildWikiPages do
 
       timestamps()
     end
+
+    create unique_index(:guild_wiki_pages, [:entity_id])
   end
 end
