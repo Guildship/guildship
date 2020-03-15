@@ -8,6 +8,11 @@ defmodule Guildship.Guilds do
   def create_guild() do
   end
 
+  def list_guilds() do
+    Guilds.Guild
+    |> Repo.all()
+  end
+
   def delete_guild() do
   end
 
