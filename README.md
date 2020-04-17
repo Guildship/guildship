@@ -1,4 +1,6 @@
 # Guildship
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FGuildship%2Fguildship.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FGuildship%2Fguildship?ref=badge_shield)
+
 
 To start your Phoenix server:
 
@@ -18,3 +20,7 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
   * Docs: https://hexdocs.pm/phoenix
   * Forum: https://elixirforum.com/c/phoenix-forum
   * Source: https://github.com/phoenixframework/phoenix
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FGuildship%2Fguildship.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FGuildship%2Fguildship?ref=badge_large)
