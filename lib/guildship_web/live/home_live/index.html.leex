@@ -1,0 +1,19 @@
+<section>
+  <h1>Welcome to Guildship!</h1>
+
+  <form phx-change="suggest" phx-submit="search">
+    <input type="text" name="q" class="p-1 text-gray-900" value="<%= @query %>" placeholder="Live dependency search" list="results" autocomplete="off"/>
+    <datalist id="results">
+      <%= for {app, vsn} <- @results do %>
+        <option value="<%= app %>"><%= app %>@<%= vsn %></option>
+      <% end %>
+    </datalist>
+    <button type="submit" class="rounded bg-blue-500 text-white p-1" phx-disable-with="Searching...">Go to Hexdocs</button>
+  </form>
+
+  <%= if function_exported?(Routes, :live_dashboard_path, 2) do %>
+    <%= link "LiveDashboard", to: Routes.live_dashboard_path(@socket, :home) %>
+  <% end %>
+
+  <%= live_patch "Go to Guild 123", to: Routes.live_path(@socket, GuildshipWeb.GuildLive.Index, "123") %>
+</section>

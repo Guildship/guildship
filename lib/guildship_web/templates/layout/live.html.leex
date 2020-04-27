@@ -1,8 +1,7 @@
-<nav>
-  <%= live_patch "Home", to: "/" %>
-  <%= live_patch "Account", to: "/me" %>
-  <%= live_patch "Settings", to: "/me/settings" %>
-</nav>
-<p class="alert alert-info"><%= live_flash(@flash, :info) %></p>
-<p class="alert alert-danger"><%= live_flash(@flash, :error) %></p>
-<%= @live_view_module.render(assigns) %>
+<main role="main" class="container min-h-screen mx-auto padding-4">
+  <%= live_component @socket, GuildshipWeb.AlertsComponent %>
+  <%= @inner_content %>
+  <footer>
+    <%= live_patch "Guildship", to: Routes.live_path(@socket, GuildshipWeb.HomeLive.Index) %>
+  </footer>
+</main>

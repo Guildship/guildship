@@ -4,7 +4,7 @@ use Mix.Config
 config :guildship, Guildship.Repo,
   username: "postgres",
   password: "postgres",
-  database: "guildship_test",
+  database: "guildship_test#{System.get_env("MIX_TEST_PARTITION")}",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
 

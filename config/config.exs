@@ -15,7 +15,7 @@ config :guildship, GuildshipWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "C2P5qf5Snj/tcyVHjRIqL4W19UFK9xLic/OmWVwIf5KVoXl4CUAVXATbjteeR8pv",
   render_errors: [view: GuildshipWeb.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: Guildship.PubSub, adapter: Phoenix.PubSub.PG2],
+  pubsub_server: Guildship.PubSub,
   live_view: [signing_salt: "GeiCcZTQCoYcs0xwsqzVcqsrgCBZxmdE"]
 
 # Configures Elixir's Logger

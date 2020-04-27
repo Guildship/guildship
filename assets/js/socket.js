@@ -5,22 +5,15 @@ const csrfToken = document
   .querySelector("meta[name='csrf-token']")
   .getAttribute("content");
 
-export function connectLiveViewSocket() {
-  const liveSocket = new LiveSocket("/live", Socket, {
-    params: { _csrf_token: csrfToken }
-  });
+const liveSocket = new LiveSocket("/live", Socket, {
+  params: { _csrf_token: csrfToken },
+});
 
+export function connectLiveViewSocket() {
   liveSocket.connect();
 
-  return liveSocket;
-}
-
-export function connectSocket() {
-  const socket = new Socket("/socket", {
-    params: { token: window.userToken }
-  });
-
-  socket.connect();
-
-  return socket;
+  // expose liveSocket on window for web console debug logs and latency simulation:
+  // >> liveSocket.enableDebug()
+  // >> liveSocket.enableLatencySim(1000)
+  window.liveSocket = liveSocket;
 }

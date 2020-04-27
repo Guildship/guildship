@@ -36,10 +36,9 @@ defmodule Guildship.MixProject do
 
   defp deps do
     [
-      {:phoenix, "~> 1.4.13"},
-      {:phoenix_pubsub, "~> 1.1"},
+      {:phoenix, "~> 1.5.0"},
       {:phoenix_ecto, "~> 4.0"},
-      {:ecto_sql, "~> 3.1"},
+      {:ecto_sql, "~> 3.4"},
       {:postgrex, ">= 0.0.0"},
       {:phoenix_html, "~> 2.11"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
@@ -47,7 +46,10 @@ defmodule Guildship.MixProject do
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
       {:mix_test_watch, "~> 1.0", only: :dev, runtime: false},
-      {:phoenix_live_view, "~> 0.7.1"},
+      {:phoenix_live_view, "~> 0.12.1"},
+      {:phoenix_live_dashboard, "~> 0.2.0"},
+      {:telemetry_metrics, "~> 0.4"},
+      {:telemetry_poller, "~> 0.4"},
       {:floki, ">= 0.0.0", only: :test},
       {:ex_machina, "~> 2.4.0"},
       {:faker, "~> 0.13.0"},
@@ -59,6 +61,7 @@ defmodule Guildship.MixProject do
 
   defp aliases do
     [
+      setup: ["deps.get", "ecto.setup", "cmd yarn --cwd assets"],
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       test: ["ecto.create --quiet", "ecto.migrate", "test"]

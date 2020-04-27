@@ -1,54 +1,55 @@
 defmodule GuildshipWeb.Router do
   use GuildshipWeb, :router
-  import Phoenix.LiveView.Router
 
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
-    plug Phoenix.LiveView.Flash
+    plug :fetch_live_flash
+    plug :put_root_layout, {GuildshipWeb.LayoutView, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
-    plug :put_user_token
-  end
-
-  pipeline :api do
-    plug :accepts, ["json"]
   end
 
   scope "/", GuildshipWeb do
     pipe_through :browser
 
-    live "/", LandingLive
+    live "/", HomeLive.Index
   end
 
   scope "/g/:guild_id", GuildshipWeb do
     pipe_through :browser
 
-    live "/", GuildLive
-    live "/news", GuildNewsLive
-    live "/forum", GuildForumLive
-    live "/calendar", GuildCalendarLive
-    live "/wiki", GuildWikiLive
+    live "/", GuildLive.Index
+    live "/news", GuildNewsPostLive.Index
+    live "/news/p/:news_post_id", GuildNewsPostLive.Show
+    live "/forum", GuildForumCategoryLive.Index
+    live "/forum/c/:category_id", GuildForumCategoryLive.Show
+    live "/forum/c/:category_id/t/:thread_id", GuildForumThreadLive.Show
+    live "/calendar", GuildCalendarEventLive.Index
+    live "/calendar/e/:calendar_event_id", GuildCalendarEventLive.Show
+    live "/wiki", GuildWikiLive.Index
   end
 
   scope "/me", GuildshipWeb do
     pipe_through :browser
 
-    live "/", AccountLive
-    live "/settings", AccountSettingsLive
+    live "/", AccountLive.Index
+    live "/settings", AccountSettingsLive.Index
   end
 
-  defp put_user_token(conn, _) do
-    if current_user = conn.assigns[:current_user] do
-      token = Phoenix.Token.sign(conn, "user socket", current_user.id)
-      assign(conn, :user_token, token)
-    else
-      conn
+  # Enables LiveDashboard only for development
+  #
+  # If you want to use the LiveDashboard in production, you should put
+  # it behind authentication and allow only admins to access it.
+  # If your application does not have an admins-only section yet,
+  # you can use Plug.BasicAuth to set up some basic authentication
+  # as long as you are also using SSL (which you should anyway).
+  if Mix.env() in [:dev, :test] do
+    import Phoenix.LiveDashboard.Router
+
+    scope "/" do
+      pipe_through :browser
+      live_dashboard "/dashboard", metrics: GuildshipWeb.Telemetry
     end
   end
-
-  # Other scopes may use custom stacks.
-  # scope "/api", GuildshipWeb do
-  #   pipe_through :api
-  # end
 end

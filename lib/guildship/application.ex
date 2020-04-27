@@ -10,6 +10,10 @@ defmodule Guildship.Application do
     children = [
       # Start the Ecto repository
       Guildship.Repo,
+      # Start the Telemetry supervisor
+      GuildshipWeb.Telemetry,
+      # Start the PubSub system
+      {Phoenix.PubSub, name: Guildship.PubSub},
       # Start the endpoint when the application starts
       GuildshipWeb.Endpoint
       # Starts a worker by calling: Guildship.Worker.start_link(arg)
