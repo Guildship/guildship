@@ -1,4 +1,4 @@
-defmodule GuildshipWeb.GuildLive.GuildHomeLinkComponent do
+defmodule GuildshipWeb.GuildHomeLinkComponent do
   use GuildshipWeb, :live_component
 
   @impl true

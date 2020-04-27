@@ -1,7 +1,7 @@
-<main role="main" class="container min-h-screen mx-auto padding-4">
+<div class="flex flex-col min-h-screen w-full">
+  <%= live_component @socket, GuildshipWeb.NavComponent %>
   <%= live_component @socket, GuildshipWeb.AlertsComponent %>
-  <%= @inner_content %>
-  <footer>
-    <%= live_patch "Guildship", to: Routes.live_path(@socket, GuildshipWeb.HomeLive.Index) %>
-  </footer>
-</main>
+  <div class="flex-1">
+    <%= @inner_content %>
+  </div>
+</div>

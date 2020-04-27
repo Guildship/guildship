@@ -18,6 +18,22 @@
   pointer-events: none;
 }
 
+.guild-nav-link {
+  @apply py-2 px-4 rounded;
+}
+
+.guild-nav-link:hover,
+.guild-nav-link:focus {
+  @apply bg-gray-700;
+}
+
+@screen light-mode {
+  .guild-nav-link:hover,
+  .guild-nav-link:focus {
+    @apply bg-white;
+  }
+}
+
 /* tailwind overrides */
 
 /* purgecss end ignore */

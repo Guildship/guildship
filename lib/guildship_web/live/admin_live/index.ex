@@ -3,7 +3,7 @@ defmodule GuildshipWeb.AdminLive.Index do
 
   @impl true
   def mount(_params, _session, socket) do
-    socket = socket |> assign(:page_title, "Admin")
+    socket = socket |> assign(page_title: "Admin")
 
     {:ok, socket}
   end
