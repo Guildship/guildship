@@ -6,6 +6,7 @@ defmodule Guildship.Guilds.ForumThread do
     belongs_to :entity, Entity
     belongs_to :user, User
     belongs_to :forum_category, Guilds.ForumCategory
+    has_many :forum_thread_replies, Guilds.ForumThreadReply
 
     timestamps()
   end

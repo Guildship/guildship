@@ -2,14 +2,14 @@
   <%= live_component @socket, GuildshipWeb.NavComponent %>
   <%= live_component @socket, GuildshipWeb.AlertsComponent %>
   <div class="flex-1 flex flex-row">
-    <aside class="w-64 py-2 px-2 flex flex-col">
+    <aside class="w-64 py-2 flex flex-col">
       <%= live_patch "Guild Home", to: Routes.live_path(@socket, GuildshipWeb.GuildLive.Index, @guild_id), class: "guild-nav-link" %>
       <%= live_patch "Forums", to: Routes.live_path(@socket, GuildshipWeb.GuildForumCategoryLive.Index, @guild_id), class: "guild-nav-link" %>
       <%= live_patch "News", to: Routes.live_path(@socket, GuildshipWeb.GuildNewsPostLive.Index, @guild_id), class: "guild-nav-link" %>
       <%= live_patch "Calendar", to: Routes.live_path(@socket, GuildshipWeb.GuildCalendarEventLive.Index, @guild_id), class: "guild-nav-link" %>
       <%= live_patch "Wiki", to: Routes.live_path(@socket, GuildshipWeb.GuildWikiLive.Index, @guild_id), class: "guild-nav-link" %>
     </aside>
-    <main class="w-full p-4 container mx-auto">
+    <main class="w-full p-2 container mx-auto">
       <%= @inner_content %>
     </main>
   </div>

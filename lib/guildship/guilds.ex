@@ -4,6 +4,7 @@ defmodule Guildship.Guilds do
   """
 
   use Guildship
+  import Ecto.Query
 
   def create_guild() do
   end
@@ -37,6 +38,17 @@ defmodule Guildship.Guilds do
   def delete_news_post() do
   end
 
+  def list_forum_categories(guild_id) do
+    query =
+      from c in Guilds.ForumCategory, where: c.guild_id == ^guild_id, order_by: c.inserted_at
+
+    Repo.all(query)
+  end
+
+  def get_forum_category(category_id) do
+    Repo.one!(from c in Guilds.ForumCategory, where: c.id == ^category_id)
+  end
+
   def create_forum_category() do
   end
 
@@ -46,10 +58,31 @@ defmodule Guildship.Guilds do
   def edit_forum_category() do
   end
 
+  def get_forum_threads_in_category(category_id) do
+    Repo.all(
+      from t in Guilds.ForumThread,
+        where: t.forum_category_id == ^category_id,
+        order_by: [desc: t.inserted_at]
+    )
+  end
+
   def create_forum_thread() do
   end
 
   def edit_forum_thread() do
+  end
+
+  def count_forum_thread_replies(query) do
+    from t in query,
+      group_by: t.id,
+      left_join: r in assoc(t, :forum_thread_replies),
+      select: {t, count(r.id)}
+  end
+
+  def get_forum_thread_replies_in_thread(thread_id) do
+    from(t in Guilds.ForumThread, where: t.id == ^thread_id)
+    |> count_forum_thread_replies()
+    |> Repo.all()
   end
 
   def delete_forum_thread() do

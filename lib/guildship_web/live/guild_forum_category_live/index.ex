@@ -6,7 +6,15 @@ defmodule GuildshipWeb.GuildForumCategoryLive.Index do
 
   @impl true
   def mount(params, _session, socket) do
-    socket = socket |> assign(page_title: "Guild Forum", guild_id: params["guild_id"])
+    categories = Guildship.Guilds.list_forum_categories(params["guild_id"])
+
+    socket =
+      socket
+      |> assign(
+        page_title: "Guild Forum",
+        guild_id: params["guild_id"],
+        forum_categories: categories
+      )
 
     {:ok, socket}
   end

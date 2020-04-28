@@ -19,7 +19,7 @@
 }
 
 .guild-nav-link {
-  @apply py-2 px-4 rounded;
+  @apply py-2 px-4 rounded rounded-l-none;
 }
 
 .guild-nav-link:hover,

@@ -1,1 +1,12 @@
-<h1>Guild Forum</h1>
+<h1 class="text-xl mb-4 mt-2">Forum Categories</h1>
+<ul>
+  <%= for category <- @forum_categories do %>
+  <li>
+    <%= live_patch to: Routes.live_path(@socket, GuildshipWeb.GuildForumCategoryLive.Show, @guild_id, category.id),
+                   replace: false,
+                   class: "light-mode:bg-white mb-2 shadow rounded block py-2 px-4" do %>
+      <h2><%= category.name %></h2>
+    <% end %>
+  </li>
+  <% end %>
+</ul>
