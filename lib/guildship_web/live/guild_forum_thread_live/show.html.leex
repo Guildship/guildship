@@ -1,1 +1,13 @@
-<h1>Guild Forum Thread</h1>
+<h1 class="page-title-heading"><%= @thread.title %></h1>
+<ul>
+  <%= for reply <- @replies do %>
+    <li class="light-mode:bg-white mb-2 shadow rounded block py-2 px-4">
+      <div>
+        <%= raw reply.body_html %>
+      </div>
+      <p class="text-xs light-mode:text-gray-500">
+        <%= reply.user.username %>#<%= reply.user.discriminator |> to_string() |> String.pad_leading(4, "0") %>
+      </p>
+    </li>
+  <% end %>
+</ul>

@@ -55,7 +55,8 @@ defmodule Guildship.MixProject do
       {:faker, "~> 0.13.0"},
       {:earmark, "~> 1.4.3"},
       {:html_sanitize_ex, "~> 1.4.0"},
-      {:recase, "~> 0.6.0"}
+      {:recase, "~> 0.6.0"},
+      {:hashids, "~> 2.0.4"}
     ]
   end
 

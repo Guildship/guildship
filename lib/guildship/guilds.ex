@@ -61,9 +61,17 @@ defmodule Guildship.Guilds do
   def get_forum_threads_in_category(category_id) do
     Repo.all(
       from t in Guilds.ForumThread,
+        group_by: t.id,
+        preload: [:forum_thread_replies],
+        left_join: r in assoc(t, :forum_thread_replies),
         where: t.forum_category_id == ^category_id,
-        order_by: [desc: t.inserted_at]
+        order_by: [desc: t.inserted_at],
+        select: {t, count(r.id)}
     )
+  end
+
+  def get_forum_thread_by_id(thread_id) do
+    Repo.one!(from t in Guilds.ForumThread, where: t.id == ^thread_id)
   end
 
   def create_forum_thread() do
@@ -72,20 +80,16 @@ defmodule Guildship.Guilds do
   def edit_forum_thread() do
   end
 
-  def count_forum_thread_replies(query) do
-    from t in query,
-      group_by: t.id,
-      left_join: r in assoc(t, :forum_thread_replies),
-      select: {t, count(r.id)}
+  def delete_forum_thread() do
   end
 
   def get_forum_thread_replies_in_thread(thread_id) do
-    from(t in Guilds.ForumThread, where: t.id == ^thread_id)
-    |> count_forum_thread_replies()
-    |> Repo.all()
-  end
-
-  def delete_forum_thread() do
+    Repo.all(
+      from r in Guilds.ForumThreadReply,
+        preload: [:user, :forum_thread],
+        where: r.forum_thread_id == ^thread_id,
+        order_by: [asc: r.inserted_at]
+    )
   end
 
   def create_forum_thread_reply() do

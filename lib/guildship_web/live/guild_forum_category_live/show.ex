@@ -8,9 +8,7 @@ defmodule GuildshipWeb.GuildForumCategoryLive.Show do
   def mount(params, _session, socket) do
     category = Guildship.Guilds.get_forum_category(params["category_id"])
 
-    threads =
-      Guildship.Guilds.get_forum_threads_in_category(params["category_id"])
-      |> Enum.flat_map(fn t -> Guildship.Guilds.get_forum_thread_replies_in_thread(t.id) end)
+    threads = Guildship.Guilds.get_forum_threads_in_category(params["category_id"])
 
     socket =
       socket

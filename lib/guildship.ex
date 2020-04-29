@@ -16,6 +16,7 @@ defmodule Guildship do
       alias Guildship.Guilds
       alias Guildship.Administration
       alias Guildship.Markdown
+      alias Guildship.Hashid
     end
   end
 end
