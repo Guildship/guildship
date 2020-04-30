@@ -18,7 +18,7 @@ defmodule GuildshipWeb.NavComponent do
         </div>
         <div class="w-full block flex-grow lg:flex lg:items-center mt-4 lg:mt-0 lg:w-auto">
           <div class="text-sm lg:flex-grow flex flex-col lg:flex-row">
-            <%= live_patch "Go to Guild 1", to: Routes.live_path(@socket, GuildshipWeb.GuildLive.Index, "1"), class: "block py-2 lg:px-2 light-mode:hover:text-black" %>
+            <%= live_patch "Go to Guild a4q8", to: Routes.live_path(@socket, GuildshipWeb.GuildLive.Index, "a4q8"), class: "block py-2 lg:px-2 light-mode:hover:text-black" %>
             <%= if function_exported?(Routes, :live_dashboard_path, 2) do %>
               <%= link "LiveDashboard", to: Routes.live_dashboard_path(@socket, :home), class: "block py-2 lg:px-2 light-mode:hover:text-black" %>
             <% end %>

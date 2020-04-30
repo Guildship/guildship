@@ -39,10 +39,9 @@ defmodule Guildship.Guilds do
   end
 
   def list_forum_categories(guild_id) do
-    query =
+    Repo.all(
       from c in Guilds.ForumCategory, where: c.guild_id == ^guild_id, order_by: c.inserted_at
-
-    Repo.all(query)
+    )
   end
 
   def get_forum_category(category_id) do
