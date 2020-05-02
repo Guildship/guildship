@@ -1,12 +1,12 @@
 <section class="p-4">
   <h1 class="text-xl">Welcome to Guildship!</h1>
   <div class="w-full max-w-xs mt-4">
-    <form phx-change="suggest" phx-submit="search" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+    <form phx-change="suggest" phx-submit="search" class="bg-gray-800 light-mode:bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
       <div class="mb-4">
-        <label class="block text-gray-700 text-sm font-bold mb-2" for="q">
+        <label class="block text-sm font-bold mb-2" for="q">
           Live dependency search
         </label>
-        <input id="q" type="text" name="q" value="<%= @query %>" placeholder="Live dependency search" list="results" autocomplete="off" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+        <input id="q" type="text" name="q" value="<%= @query %>" placeholder="Live dependency search" list="results" autocomplete="off" class="bg-gray-700 shadow appearance-none rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline">
         <datalist id="results">
           <%= for {app, vsn} <- @results do %>
             <option value="<%= app %>"><%= app %>@<%= vsn %></option>
@@ -14,7 +14,7 @@
         </datalist>
       </div>
       <div class="flex items-center justify-between">
-        <button phx-disable-with="Searching..." type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+        <button phx-disable-with="Searching..." type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
           Go to Hexdocs
         </button>
       </div>

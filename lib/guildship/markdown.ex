@@ -3,6 +3,8 @@ defmodule Guildship.Markdown do
   import HtmlSanitizeEx
 
   def markdown_to_clean_html!(md) do
-    md |> as_html! |> markdown_html()
+    md
+    |> as_html!
+    |> markdown_html()
   end
 end

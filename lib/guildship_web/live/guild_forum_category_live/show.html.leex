@@ -4,9 +4,12 @@
   <li>
     <%= live_patch to: Routes.live_path(@socket, GuildshipWeb.GuildForumThreadLive.Show, @guild_id, @category_id, thread.id),
                   replace: false,
-                  class: "light-mode:bg-white mb-2 shadow rounded block py-2 px-4" do %>
+                  class: "bg-gray-800 light-mode:bg-white mb-2 shadow rounded block py-2 px-4" do %>
       <h2 class="mb-1"><%= thread.title %></h2>
-      <h3 class="text-xs light-mode:text-gray-500"><%= count %> replies</h3>
+      <h3 class="text-xs light-mode:text-gray-500"><%= Cldr.Message.format! "{count, plural,
+        =0 {no replies}
+        =1 {one reply}
+        other {# replies}}", count: count %></h3>
     <% end %>
   </li>
   <% end %>

@@ -56,7 +56,11 @@ defmodule Guildship.MixProject do
       {:earmark, "~> 1.4.3"},
       {:html_sanitize_ex, "~> 1.4.0"},
       {:recase, "~> 0.6.0"},
-      {:hashids, "~> 2.0.4"}
+      {:hashids, "~> 2.0.4"},
+      {:ex_cldr, "~> 2.13.0"},
+      {:ex_cldr_messages, "~> 0.4.0"},
+      {:ex_cldr_dates_times, "~> 2.3.0"},
+      {:ex_cldr_numbers, "~> 2.12.1"}
     ]
   end
 

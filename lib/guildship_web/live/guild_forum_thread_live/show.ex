@@ -1,8 +1,15 @@
 defmodule GuildshipWeb.GuildForumThreadLive.Show do
   use GuildshipWeb, :guild_live_view
+  alias Guildship.Markdown
 
   @impl true
   def handle_params(_, _, socket), do: {:noreply, socket}
+
+  @impl true
+  def handle_event("reply_to_thread", %{"body" => body}, socket) do
+    Markdown.markdown_to_clean_html!(body) |> IO.inspect()
+    {:noreply, socket}
+  end
 
   @impl true
   def mount(params, _session, socket) do
@@ -12,7 +19,7 @@ defmodule GuildshipWeb.GuildForumThreadLive.Show do
     socket =
       socket
       |> assign(
-        page_title: "Guild Forum Thread",
+        page_title: thread.title || "Guild Forum Thread",
         guild_id: params["guild_id"],
         thread: thread,
         replies: replies

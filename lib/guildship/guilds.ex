@@ -70,7 +70,7 @@ defmodule Guildship.Guilds do
   end
 
   def get_forum_thread_by_id(thread_id) do
-    Repo.one!(from t in Guilds.ForumThread, where: t.id == ^thread_id)
+    Repo.one!(from t in Guilds.ForumThread, where: t.id == ^thread_id, preload: [:user])
   end
 
   def create_forum_thread() do
