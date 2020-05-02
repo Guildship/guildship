@@ -4,7 +4,7 @@ defmodule GuildshipWeb.NavComponent do
   @impl true
   def render(assigns) do
     ~L"""
-    <nav class="light-mode:bg-white shadow p-4 z-50 sticky top-0">
+    <nav class="light-mode:bg-white bg-gray-800 shadow p-4 z-50 sticky top-0">
       <div class="flex items-center justify-between flex-wrap">
         <div class="flex items-center flex-shrink-0 mr-6">
           <span class="font-bold text-xl tracking-tight cursor-default">
