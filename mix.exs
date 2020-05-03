@@ -36,6 +36,7 @@ defmodule Guildship.MixProject do
 
   defp deps do
     [
+      {:bcrypt_elixir, "~> 2.0"},
       {:phoenix, "~> 1.5.0"},
       {:phoenix_ecto, "~> 4.0"},
       {:ecto_sql, "~> 3.4"},
@@ -61,7 +62,8 @@ defmodule Guildship.MixProject do
       {:ex_cldr_messages, "~> 0.4.0"},
       {:ex_cldr_dates_times, "~> 2.3.0"},
       {:ex_cldr_numbers, "~> 2.12.1"},
-      {:scrivener_ecto, "~> 2.3.0"}
+      {:scrivener_ecto, "~> 2.3.0"},
+      {:phx_gen_auth, "~> 0.2.0"}
     ]
   end
 
