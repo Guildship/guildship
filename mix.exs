@@ -61,7 +61,8 @@ defmodule Guildship.MixProject do
       {:ex_cldr_messages, "~> 0.4.0"},
       {:ex_cldr_dates_times, "~> 2.3.0"},
       {:ex_cldr_numbers, "~> 2.12.1"},
-      {:scrivener_ecto, "~> 2.3.0"}
+      {:scrivener_ecto, "~> 2.3.0"},
+      {:bcrypt_elixir, "~> 2.0"}
     ]
   end
 
