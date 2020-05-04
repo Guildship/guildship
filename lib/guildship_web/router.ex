@@ -1,5 +1,6 @@
 defmodule GuildshipWeb.Router do
   use GuildshipWeb, :router
+  import GuildshipWeb.UserAuth
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -14,6 +15,15 @@ defmodule GuildshipWeb.Router do
     pipe_through :browser
 
     live "/", HomeLive.Index
+  end
+
+  scope "/", GuildshipWeb do
+    pipe_through [:browser, :redirect_if_user_is_authenticated]
+
+    live "/login", LoginLive.Index
+    live "/register", RegisterLive.Index
+    live "/reset-password", ResetPasswordLive.Index
+    live "/reset-password/:token", ConfirmResetPasswordLive.Index
   end
 
   scope "/g/:guild_id", GuildshipWeb do
@@ -31,9 +41,10 @@ defmodule GuildshipWeb.Router do
   end
 
   scope "/me", GuildshipWeb do
-    pipe_through :browser
+    pipe_through [:browser, :require_authenticated_user]
 
     live "/", AccountLive.Index
+    live "/logout", LogoutLive.Index
     live "/settings", AccountSettingsLive.Index
   end
 

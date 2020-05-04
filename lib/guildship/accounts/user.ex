@@ -2,6 +2,7 @@ defmodule Guildship.Accounts.User do
   use Guildship.Schema
   alias Guildship.Repo
 
+  @derive {Inspect, except: [:password]}
   schema "users" do
     field :username, :string
     field :discriminator, :integer

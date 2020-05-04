@@ -20,7 +20,9 @@ defmodule GuildshipWeb.ConnCase do
   using do
     quote do
       # Import conveniences for testing with connections
+      import Plug.Conn
       import Phoenix.ConnTest
+      import Guildship.Factory
       alias GuildshipWeb.Router.Helpers, as: Routes
 
       # The default endpoint for testing
