@@ -1,5 +1,8 @@
 use Mix.Config
 
+# Make Bcrypt slow for tests
+config :bcrypt_elixir, :log_rounds, 1
+
 # Configure your database
 config :guildship, Guildship.Repo,
   username: "postgres",
