@@ -1,15 +1,14 @@
-<h1 class="page-title-heading"><%= @thread.title %></h1>
 <ul>
   <%= for reply <- @replies do %>
     <li id="<%= reply.id %>" class="mb-2">
       <div class="flex items-stretch min-h-24 rounded shadow">
-        <div class="w-48 bg-gray-700 p-4 rounded rounded-r-none">
+        <div class="w-48 bg-fog-700 p-4 rounded rounded-r-none">
           <div class="post-author">
             <p><%= reply.user.username %></p>
             <p class="text-sm opacity-50">#<%= reply.user.discriminator |> to_string() |> String.pad_leading(4, "0") %></p>
           </div>
         </div>
-        <div class="flex-1 light-mode:bg-white bg-gray-800 rounded rounded-l-none block p-4">
+        <div class="flex-1 bg-fog-800 rounded rounded-l-none block p-4">
           <div class="post-container">
             <%= raw reply.body_html %>
           </div>
@@ -22,6 +21,8 @@
   <% end %>
 </ul>
 <form phx-submit="reply_to_thread">
-  <textarea class="font-mono bg-gray-700 shadow rounded outline-none p-2" name="body"></textarea>
+  <div phx-update="ignore" phx-hook="ReplyBodyInput">
+    <textarea id="reply-body" name="body"></textarea>
+  </div>
   <button type="submit">Submit</button>
 </form>

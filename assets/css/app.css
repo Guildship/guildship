@@ -24,7 +24,7 @@
 
 .guild-nav-link:hover,
 .guild-nav-link:focus {
-  @apply bg-gray-700;
+  @apply bg-fog-700;
 }
 
 @screen light-mode {

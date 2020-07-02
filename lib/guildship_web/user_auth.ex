@@ -123,7 +123,7 @@ defmodule GuildshipWeb.UserAuth do
       conn
       |> put_flash(:error, "You must login to access this page.")
       |> maybe_store_return_to()
-      |> redirect(to: Routes.live_path(conn.socket, LoginLive.Index))
+      |> redirect(to: Routes.live_path(conn, GuildshipWeb.LoginLive.Index))
       |> halt()
     end
   end

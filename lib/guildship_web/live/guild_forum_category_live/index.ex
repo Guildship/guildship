@@ -11,7 +11,7 @@ defmodule GuildshipWeb.GuildForumCategoryLive.Index do
     socket =
       socket
       |> assign(
-        page_title: "Guild Forum",
+        page_title: "Forum Categories",
         guild_id: params["guild_id"],
         forum_categories: categories
       )

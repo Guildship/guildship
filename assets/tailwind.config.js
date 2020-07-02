@@ -1,8 +1,10 @@
+const defaultTheme = require("tailwindcss/defaultTheme");
+
 module.exports = {
   theme: {
     extend: {
       colors: {
-        gray: {
+        fog: {
           "100": "#f1f1f1",
           "200": "#dbdbdb",
           "300": "#c6c6c6",
@@ -14,11 +16,16 @@ module.exports = {
           "900": "#222222",
         },
       },
+      fontFamily: {
+        sans: ["Inter var", ...defaultTheme.fontFamily.sans],
+      },
       screens: {
         "light-mode": { raw: "(prefers-color-scheme: light)" },
       },
     },
   },
-  variants: {},
-  plugins: [],
+  variants: {
+    borderWidth: ["responsive", "last", "hover", "focus"],
+  },
+  plugins: [require("@tailwindcss/ui")],
 };

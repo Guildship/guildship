@@ -7,7 +7,7 @@ defmodule GuildshipWeb.GuildForumThreadLive.Show do
 
   @impl true
   def handle_event("reply_to_thread", %{"body" => body}, socket) do
-    Markdown.markdown_to_clean_html!(body) |> IO.inspect()
+    Markdown.markdown_to_clean_html!(body) |> IO.inspect() |> String.trim()
     {:noreply, socket}
   end
 

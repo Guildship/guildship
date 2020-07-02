@@ -1,12 +1,38 @@
-<h1 class="page-title-heading">Forum Categories</h1>
-<ul>
-  <%= for category <- @forum_categories do %>
-  <li>
-    <%= live_patch to: Routes.live_path(@socket, GuildshipWeb.GuildForumCategoryLive.Show, @guild_id, category.id),
-                   replace: false,
-                   class: "light-mode:bg-white mb-2 shadow rounded block py-2 px-4" do %>
-      <h2><%= category.name %></h2>
+<div class="bg-fog-800 overflow-hidden rounded-lg shadow">
+  <div class="px-4 py-5 sm:px-6">
+    <div class="-ml-4 -mt-4 flex justify-between items-center flex-wrap sm:flex-no-wrap">
+      <div class="ml-4 mt-4">
+        <h3 class="text-lg leading-6 font-medium text-fog-100">
+          <%= @page_title %>
+        </h3>
+        <p class="mt-1 text-sm leading-5 text-fog-200">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit quam corrupti consectetur.
+        </p>
+      </div>
+      <div class="ml-4 mt-4 flex-shrink-0">
+        <span class="inline-flex rounded-md shadow-sm">
+          <button type="button" class="relative inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-700 active:bg-blue-700">
+            Create new thread
+          </button>
+        </span>
+      </div>
+    </div>
+  </div>
+  <ul>
+    <%= for category <- @forum_categories do %>
+      <li class="border-t border-gray-600 first:border-t-0">
+        <%= live_patch to: Routes.live_path(@socket, GuildshipWeb.GuildForumCategoryLive.Show, @guild_id, category.id),
+                      replace: false,
+                      class: "block hover:bg-fog-700 focus:outline-none focus:bg-gray-700 transition duration-150 ease-in-out" do %>
+          <div class="px-4 py-4 sm:px-6">
+            <div class="flex items-center justify-between">
+              <div class="text-sm leading-5 font-medium text-fog-50 truncate">
+                <%= category.name %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </li>
     <% end %>
-  </li>
-  <% end %>
-</ul>
+  </ul>
+</div>

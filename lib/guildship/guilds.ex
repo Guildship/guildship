@@ -117,4 +117,42 @@ defmodule Guildship.Guilds do
 
   def rsvp_to_calendar_event() do
   end
+
+  def get_latest_threads(guild_id, count \\ 10) do
+    Repo.all(
+      from t in Guilds.ForumThread,
+        join: c in Guilds.ForumCategory,
+        on: c.id == t.forum_category_id,
+        where: c.guild_id == ^guild_id,
+        order_by: [t.inserted_at],
+        limit: ^count
+    )
+  end
+
+  def get_latest_news(guild_id, count \\ 10) do
+    Repo.all(
+      from p in Guilds.NewsPost,
+        where: p.guild_id == ^guild_id,
+        order_by: [p.inserted_at],
+        limit: ^count
+    )
+  end
+
+  def get_latest_events(guild_id, count \\ 10) do
+    Repo.all(
+      from e in Guilds.CalendarEvent,
+        where: e.guild_id == ^guild_id,
+        order_by: [e.inserted_at],
+        limit: ^count
+    )
+  end
+
+  def get_latest_wiki_updates(guild_id, count \\ 10) do
+    Repo.all(
+      from p in Guilds.WikiPage,
+        where: p.guild_id == ^guild_id,
+        order_by: [p.inserted_at],
+        limit: ^count
+    )
+  end
 end

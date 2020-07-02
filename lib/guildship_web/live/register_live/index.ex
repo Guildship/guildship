@@ -1,3 +1,3 @@
-defmodule GuildshipWeb.ResetPasswordLive.Index do
+defmodule GuildshipWeb.RegisterLive.Index do
   use GuildshipWeb, :live_view
 end

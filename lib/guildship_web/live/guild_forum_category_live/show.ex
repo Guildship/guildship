@@ -15,6 +15,7 @@ defmodule GuildshipWeb.GuildForumCategoryLive.Show do
       |> assign(
         guild_id: params["guild_id"],
         category_id: params["category_id"],
+        page_title: category.name,
         category: category,
         threads: threads
       )

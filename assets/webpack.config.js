@@ -8,12 +8,13 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 let PurgecssPlugin = require("purgecss-webpack-plugin");
 
 const TailwindExtractor = (content) => {
-  return content.match(/[\w-/:]+(?<!:)/g) || [];
+  return content.match(/[\w-/.:]+(?<!:)/g) || [];
 };
 
 const purge = new PurgecssPlugin({
   paths: glob.sync([
     path.resolve(__dirname, "../lib/guildship_web/live/**/*.ex"),
+    path.resolve(__dirname, "../lib/guildship_web/live/**/*.leex"),
     path.resolve(__dirname, "../lib/guildship_web/templates/**/*.eex"),
     path.resolve(__dirname, "../lib/guildship_web/templates/**/*.leex"),
     path.resolve(__dirname, "../lib/guildship_web/views/**/*.ex"),

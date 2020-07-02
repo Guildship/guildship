@@ -26,10 +26,16 @@ defmodule GuildshipWeb.Router do
     live "/reset-password/:token", ConfirmResetPasswordLive.Index
   end
 
+  scope "/dash", GuildshipWeb do
+    pipe_through [:browser, :require_authenticated_user]
+
+    live "/", DashboardLive.Index
+  end
+
   scope "/g/:guild_id", GuildshipWeb do
     pipe_through :browser
 
-    live "/", GuildLive.Index
+    live "/", GuildLive.Show
     live "/news", GuildNewsPostLive.Index
     live "/news/p/:news_post_id", GuildNewsPostLive.Show
     live "/forum", GuildForumCategoryLive.Index
