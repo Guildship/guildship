@@ -7,6 +7,13 @@ const csrfToken = document
   .getAttribute("content");
 
 const liveSocket = new LiveSocket("/live", Socket, {
+  dom: {
+    onBeforeElUpdated(from, to) {
+      if (from.__x) {
+        window.Alpine.clone(from.__x, to);
+      }
+    },
+  },
   hooks: Hooks,
   params: { _csrf_token: csrfToken },
 });
